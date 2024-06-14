@@ -34,7 +34,7 @@ const CreateScreen = ({ navigation }) => {
       />
       <View style={styles.colorButtonContainer}>
         <IconButton
-          icon="hexagon"
+          icon="bookmark"
           iconColor="rgb(255, 138, 255)"
           size={30}
           onPress={() => setCategoryColor('rgb(255, 231, 255)')}
