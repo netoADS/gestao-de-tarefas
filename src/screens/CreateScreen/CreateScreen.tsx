@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, IconButton } from 'react-native-paper';
 import { createTask } from '../../services/tasks';
 
 const CreateScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [categoryColor, setCategoryColor] = useState('');
+  const [categoryColor, setCategoryColor] = useState<string>('');
 
   // Função para salvar uma nova tarefa
   const handleSave = async () => {
@@ -21,25 +21,42 @@ const CreateScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Title"
+        label="Titulo"
         value={title}
         onChangeText={setTitle}
         style={styles.input}
       />
       <TextInput
-        label="Description"
+        label="Descrição"
         value={description}
         onChangeText={setDescription}
         style={styles.input}
       />
-      <TextInput
-        label="Category Color"
-        value={categoryColor}
-        onChangeText={setCategoryColor}
-        style={styles.input}
-      />
+      <View style={styles.colorButtonContainer}>
+        <IconButton
+          icon="hexagon"
+          iconColor="rgb(255, 138, 255)"
+          size={30}
+          onPress={() => setCategoryColor('rgb(255, 231, 255)')}
+          style={categoryColor === 'rgb(255, 231, 255)' && styles.selectedColorButton}
+        />
+        <IconButton
+          icon="bookmark"
+          iconColor="purple"
+          size={30}
+          onPress={() => setCategoryColor('rgb(200, 150, 200)')}
+          style={categoryColor === 'rgb(200, 150, 200)' && styles.selectedColorButton}
+        />
+        <IconButton
+          icon="bookmark"
+          iconColor="red"
+          size={30}
+          onPress={() => setCategoryColor('#f78f8f')}
+          style={categoryColor === '#f78f8f' && styles.selectedColorButton}
+        />
+      </View>
       <Button mode="contained" onPress={handleSave}>
-        Save
+        Salvar
       </Button>
     </View>
   );
@@ -52,6 +69,15 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
+  },
+  colorButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 20,
+  },
+  selectedColorButton: {
+    borderWidth: 2,
+    borderColor: 'black',
   },
 });
 

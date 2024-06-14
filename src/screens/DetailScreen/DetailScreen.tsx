@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, IconButton } from 'react-native-paper';
 import { readTasks, updateTask, deleteTask } from '../../services/tasks';
 import { Task } from '../../types/types'; // Importe o tipo Task
 
@@ -51,31 +51,52 @@ const DetailScreen = ({ route, navigation }) => {
     setTask({ ...task, [name]: value });
   };
 
+  const setCategoryColor = (color: string) => {
+    setTask({ ...task, categoryColor: color });
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
-        label="Title"
+        label="Titulo"
         value={task.title}
         onChangeText={(text) => handleChange('title', text)}
         style={styles.input}
       />
       <TextInput
-        label="Description"
+        label="Descrição"
         value={task.description}
         onChangeText={(text) => handleChange('description', text)}
         style={styles.input}
       />
-      <TextInput
-        label="Category Color"
-        value={task.categoryColor}
-        onChangeText={(text) => handleChange('categoryColor', text)}
-        style={styles.input}
-      />
+      <View style={styles.colorButtonContainer}>
+        <IconButton
+          icon="circle"
+          iconColor="rgb(255, 138, 255)"
+          size={30}
+          onPress={() => setCategoryColor('rgb(255, 231, 255)')}
+          style={task.categoryColor === 'rgb(255, 231, 255)' && styles.selectedColorButton}
+        />
+        <IconButton
+          icon="circle"
+          iconColor="purple"
+          size={30}
+          onPress={() => setCategoryColor('rgb(200, 150, 200)')}
+          style={task.categoryColor === 'rgb(200, 150, 200)' && styles.selectedColorButton}
+        />
+        <IconButton
+          icon="circle"
+          iconColor="red"
+          size={30}
+          onPress={() => setCategoryColor('#f78f8f')}
+          style={task.categoryColor === '#f78f8f' && styles.selectedColorButton}
+        />
+      </View>
       <Button mode="contained" onPress={handleUpdate} style={styles.button}>
-        Update
+        Atualizar
       </Button>
       <Button mode="contained" onPress={handleDelete} style={styles.button} color="red">
-        Delete
+        Apagar
       </Button>
     </View>
   );
@@ -88,6 +109,15 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
+  },
+  colorButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 20,
+  },
+  selectedColorButton: {
+    borderWidth: 2,
+    borderColor: 'black',
   },
   button: {
     marginTop: 10,

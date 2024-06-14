@@ -13,27 +13,32 @@ Este é um aplicativo simples de gerenciamento de tarefas desenvolvido em React 
 
 1. Clone este repositório em sua máquina local:
 
-git clone https://github.com/seu-usuario/task-manager-app.git
+```git clone https://github.com/netoADS/gestao-de-tarefas```
 
 
 2. Navegue até o diretório do projeto:
 
+```js
 cd gestao-de-tarefas
+```
 
 3. Instale as dependências necessárias:
 
-npm install
+```js
+npm install.
+```
 
 ou
 
+```js
 yarn install
+```
 
 4. Execute o aplicativo em seu emulador ou dispositivo:
 
-npm start
+```js
+npx expo start
+```
 
-ou
-
-yarn start
 
 5. Siga as instruções exibidas no terminal para visualizar o aplicativo em um emulador ou dispositivo físico.

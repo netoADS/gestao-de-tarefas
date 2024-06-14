@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView>
         {tasks.map(task => (
-          <Card key={task.id} style={styles.card}>
+          <Card key={task.id} style={[styles.card, { backgroundColor: task.categoryColor }]}>
             <Card.Content>
               <Title>{task.title}</Title>
               <Paragraph>{task.description}</Paragraph>
